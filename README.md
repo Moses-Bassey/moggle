@@ -9,4 +9,4 @@
  - Clone the repo https://github.com/Moses-Bassey/moggle
  - Visit https://www.omdbapi.com/ and obtain an API key. You may have to sign up with your email
  - Navigate to appsettings.json and search and update `omdbAPiKey` with an API key obtain from https://www.omdbapi.com/
- - Ensure all nodemodules are installed in the ClientApp (`npm install` will install nodemodules) then run the command `dotnet run` outside the ClientApp
+ - Ensure all node modules are installed in the ClientApp (`npm install` will install node modules) then run the command `dotnet run` outside the ClientApp
