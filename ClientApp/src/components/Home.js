@@ -5,8 +5,6 @@ import { SearchResultsList } from './SearchResultsList';
 export class Home extends Component {
   static displayName = Home.name;
 
-  
-  // eslint-disable-next-line no-useless-constructor
   constructor (props) {
     super(props);
 

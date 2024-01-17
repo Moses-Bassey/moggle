@@ -10,7 +10,7 @@ export class SearchResultsList extends Component {
     }
     
     render() {
-        const { results } = this.props;
+        const { results, error } = this.props;
         return (
             <div className="results-list">
                {

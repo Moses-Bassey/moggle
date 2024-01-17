@@ -48,7 +48,6 @@ namespace dotnetcore.Controllers
             try
             {
                 List<SearchQuery> recentlyAddedQueries = _saveSearch.OrderByDescending(q => q.Timestamp).Take(5).ToList();
-                Console.WriteLine(recentlyAddedQueries);
                 return Ok(recentlyAddedQueries);
             }
             catch (HttpRequestException ex)
@@ -74,7 +73,6 @@ namespace dotnetcore.Controllers
                     if (movieData?.Title != null) {
                         SearchQuery newSearchQuery = new SearchQuery { text = movieData.Title };
                         _saveSearch.Add(newSearchQuery);
-                        Console.WriteLine(_saveSearch);
                     }
                     return Ok(movieData);
                 } else {

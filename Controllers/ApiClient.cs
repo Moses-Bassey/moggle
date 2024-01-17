@@ -15,7 +15,6 @@ namespace Controller.ApiClient {
                 var postResponse = JsonSerializer.Deserialize<Movie>(responseContent);
                 return response;
             } else {
-                Console.WriteLine(response.StatusCode);
                 return response.StatusCode;
             }
         }

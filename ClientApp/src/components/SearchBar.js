@@ -27,7 +27,7 @@ export class SearchBar extends Component {
             this.props.setResults({ results: data ?? [] })
         })
         .catch(error => {
-            console.error('Fetch error:', error);
+            this.props.setError({ error: 'An error occured!' })
         });
     }
 
