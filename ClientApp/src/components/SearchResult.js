@@ -13,7 +13,7 @@ export class SearchResults extends Component {
         const { result } = this.props;
         return (
             <div className='search-result'>
-                <Link to={`/movie/?title=${result.imdbID}`}>{result.title}</Link>
+                <img style={{height: '20px'}} src={ result?.poster === 'N/A' ? 'https://i.ibb.co/Lv9gYz3/Screenshot-2024-01-17-at-7-20-25-AM.png' : result?.poster} alt={result?.title}></img>&nbsp;&nbsp;<Link to={`/movie/?title=${result.imdbID}`}>{result.title}</Link>
             </div>
         );
     }
