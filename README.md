@@ -13,4 +13,4 @@
 
 <br>
 
-![Moogle site view](https://i.ibb.co/b7NvQgk/Screenshot-2024-01-17-at-7-20-25-AM.png)
+![Moogle site view](https://i.ibb.co/QnxJw2T/Screenshot-2024-01-17-at-7-34-15-AM.png)
