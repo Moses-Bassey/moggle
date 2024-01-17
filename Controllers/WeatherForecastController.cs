@@ -15,6 +15,7 @@ namespace dotnetcore.Controllers
         {
             _httpClient = httpClientFactory.CreateClient();
             _configuration = configuration;
+            _saveSearch = new List<SearchQuery>();
         }
         
         [HttpGet]
@@ -25,7 +26,6 @@ namespace dotnetcore.Controllers
             try
             {
                 HttpResponseMessage response = await _httpClient.GetAsync(apiUrl);
-
                 if (response.IsSuccessStatusCode)
                 {
                     string result = await response.Content.ReadAsStringAsync();
@@ -42,7 +42,22 @@ namespace dotnetcore.Controllers
             }
         }
 
-         [HttpGet("{imdbID}")]
+        [HttpGet("latest/search")]
+        public async Task<IActionResult> GetSearch()
+        {
+            try
+            {
+                List<SearchQuery> recentlyAddedQueries = _saveSearch.OrderByDescending(q => q.Timestamp).Take(5).ToList();
+                Console.WriteLine(recentlyAddedQueries);
+                return Ok(recentlyAddedQueries);
+            }
+            catch (HttpRequestException ex)
+            {
+                return StatusCode(500, $"Internal Server Error: {ex.Message}");
+            }
+        }
+
+        [HttpGet("{imdbID}")]
         public async Task<IActionResult> GetById(string imdbID)
         {
             string apiKey = _configuration["omdbAPiKey"];
@@ -56,9 +71,11 @@ namespace dotnetcore.Controllers
                     string result = await response.Content.ReadAsStringAsync();
                     var movieData = JsonSerializer.Deserialize<Movie>(result);
 
-                    // if (movieData.Title != null){
-                    //     _saveSearch.Add<SearchQuery>();
-                    // }
+                    if (movieData?.Title != null) {
+                        SearchQuery newSearchQuery = new SearchQuery { text = movieData.Title };
+                        _saveSearch.Add(newSearchQuery);
+                        Console.WriteLine(_saveSearch);
+                    }
                     return Ok(movieData);
                 } else {
                     return BadRequest($"Error: {response.StatusCode} - {response.ReasonPhrase}");

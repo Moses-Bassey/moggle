@@ -30,5 +30,6 @@ namespace Controllers.Models
 
     public class SearchQuery {
         public string? text {get; set; }
+        public DateTime Timestamp { get; set; } = DateTime.Now;
     }
 }
